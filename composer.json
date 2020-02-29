@@ -1,0 +1,80 @@
+{
+  "name": "nicolasbernaux/wp-nuxt",
+  "type": "project",
+  "license": "MIT",
+  "description": "WordPress & wuxt",
+  "authors": [
+    {
+      "name": "Bernaux Nicolas",
+      "email": "bernaux.n@gmail.com",
+      "homepage": "https://github.com/nicolasBernaux"
+    }
+  ],
+  "keywords": [
+    "wordpress", "wp", "nuxt", "vue", "api", "nuxt CMS"
+  ],
+  "config": {
+    "preferred-install": "dist",
+    "github-oauth": {
+      "github.com": "4896efe8f8fde756b72451d0f77fd9cff943b310"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:nicolasbernaux/wp-helper"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:nicolasbernaux/wp-rest-api"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "composer/installers": "^1.4",
+    "nicolasbernaux/wp-helper": "dev-master",
+    "nicolasbernaux/wp-rest-api": "dev-master",
+    "vlucas/phpdotenv": "^3.0.0",
+    "oscarotero/env": "^1.1.0",
+    "roots/wordpress": "5.1.1",
+    "roots/wp-config": "1.0.0",
+    "roots/wp-password-bcrypt": "1.0.0"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.0.2",
+    "wp-coding-standards/wpcs": "^2.1"
+  },
+  "extra": {
+    "installer-paths": {
+      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+      "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
+      "web/app/themes/{$name}/": ["type:wordpress-theme"]
+    },
+    "wordpress-install-dir": "web/wp"
+  },
+  "scripts": {
+    "post-root-package-insta": [
+      "@env"
+    ],
+    "post-install-install": [
+      "@init-phpcs"
+    ],
+    "test": [
+      "phpcs"
+    ],
+    "phpcs-fix": [
+      "phpcbf web/app/themes/"
+    ],
+    "init-phpcs": [
+      "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
+      "phpcs --config-set default_standard WordPress-Extra"
+    ],
+    "env": [
+      "php -r \"copy('.env.example', '.env');\""
+    ]
+  }
+}
