@@ -5,14 +5,12 @@
 </template>
 
 <script>
-import axios from 'axios'
-require('dotenv').config()
-
 export default {
   async asyncData(context) {
-    const { route } = context
+    const { route, $axios } = context
+
     try {
-      const response = await axios.get(
+      const response = await $axios.get(
         `${process.env.API_DOMAIN}/wp-json/rest-api/v1/slug${route.path}`
       )
       return { single: response.data }
