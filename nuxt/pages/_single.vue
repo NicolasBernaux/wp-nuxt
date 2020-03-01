@@ -1,11 +1,18 @@
 <template>
   <div>
-    {{ single.post_type }}
+    <component :is="single.post_type" :single="single"></component>
   </div>
 </template>
 
 <script>
+import Page from '~/components/templates/Page'
+import Post from '~/components/templates/Post'
+
 export default {
+  components: {
+    Page,
+    Post
+  },
   async asyncData(context) {
     const { route, $axios } = context
 
