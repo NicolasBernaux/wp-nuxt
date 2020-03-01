@@ -70,8 +70,6 @@ export default {
   },
   generate: {
     routes: () => {
-      console.log(process.env)
-      console.log(`${process.env.API_DOMAIN}/wp-json/rest-api/v1/listing`)
       return axios
         .get(`${process.env.API_DOMAIN}/wp-json/rest-api/v1/listing`)
         .then(({ data }) => data)
