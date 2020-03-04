@@ -16,7 +16,7 @@
   "config": {
     "preferred-install": "dist",
     "github-oauth": {
-      "github.com": "4896efe8f8fde756b72451d0f77fd9cff943b310"
+      "github.com": "70d3eeabdb2724a19c5ca3990c03cc8199004cea"
     }
   },
   "repositories": [
