@@ -27,6 +27,12 @@ export default {
    */
   loading: { color: '#fff' },
   /*
+   ** Add env varibales
+   */
+  env: {
+    API_DOMAIN: process.env.API_DOMAIN
+  },
+  /*
    ** Global CSS
    */
   css: [],

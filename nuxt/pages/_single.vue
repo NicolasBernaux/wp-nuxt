@@ -1,6 +1,7 @@
 <template>
   <div>
-    <component :is="single.post_type" :single="single"></component>
+    <Post v-if="single.post_type === 'post'" :single="single"></Post>
+    <Page v-if="single.post_type === 'page'"></Page>
   </div>
 </template>
 
@@ -13,16 +14,15 @@ export default {
     Page,
     Post
   },
-  async asyncData(context) {
-    const { route, $axios } = context
-
-    try {
-      const response = await $axios.get(
-        `${process.env.API_DOMAIN}/wp-json/rest-api/v1/slug${route.path}`
-      )
-      return { single: response.data }
-    } catch (error) {
-      return { error }
+  async fetch({ route, store }) {
+    await store.dispatch('singles/setSingle', route.path)
+  },
+  async watchQuery({ route, store }) {
+    await store.dispatch('singles/setSingle', route.path)
+  },
+  computed: {
+    single({ route }) {
+      return this.$store.getters['singles/getSingleByPath'](this.$route.path)
     }
   }
 }

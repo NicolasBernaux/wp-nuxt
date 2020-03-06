@@ -7,10 +7,9 @@
 
 <script>
 export default {
-  props: {
-    single: {
-      type: Object,
-      required: true
+  computed: {
+    single({ route }) {
+      return this.$store.getters['singles/getSingleByPath'](this.$route.path)
     }
   }
 }
